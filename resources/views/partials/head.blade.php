@@ -1,7 +1,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>{{ $title ?? config('Jour ' . $dayNumber . ' - 100 Days UI Challenge') }}</title>
+<title>{{ $title ?? 'Day ' . $dayNumber . ' - ' . config('app.name') }}</title>
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
