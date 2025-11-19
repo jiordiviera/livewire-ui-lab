@@ -381,30 +381,14 @@ new class extends Component {
                 <div>
                     <h3 class="text-sm font-semibold text-foreground mb-2">Alert Usage</h3>
                     <div class="bg-muted/50 rounded-lg p-4">
-                        <pre class="text-sm text-foreground overflow-x-auto"><code>&lt;x-ui.alert variant="success" :dismissible="true" title="Success"&gt;
-    Your changes have been saved!
-&lt;/x-ui.alert&gt;</code></pre>
+                        <x-markdown-content :content="get_resource_content('examples/alert-usage.blade.md')" />
                     </div>
                 </div>
 
                 <div>
                     <h3 class="text-sm font-semibold text-foreground mb-2">Modal Usage</h3>
                     <div class="bg-muted/50 rounded-lg p-4">
-                        <pre class="text-sm text-foreground overflow-x-auto"><code>&lt;!-- Trigger --&gt;
-&lt;x-ui.button x-on:click="$dispatch('open-modal-example')"&gt;
-    Open Modal
-&lt;/x-ui.button&gt;
-
-&lt;!-- Modal --&gt;
-&lt;x-ui.modal id="example" size="md" title="Example"&gt;
-    Content here...
-
-    &lt;x-slot:footer&gt;
-        &lt;x-ui.button x-on:click="$dispatch('close-modal-example')"&gt;
-            Close
-        &lt;/x-ui.button&gt;
-    &lt;/x-slot:footer&gt;
-&lt;/x-ui.modal&gt;</code></pre>
+                        <x-markdown-content  class="prose prose-green mt-2 max-w-none text-sm dark:prose-invert" :content="get_resource_content('examples/modal-usage.blade.md')" />
                     </div>
                 </div>
             </div>
