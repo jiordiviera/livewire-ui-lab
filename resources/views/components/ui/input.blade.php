@@ -82,7 +82,7 @@
                 @php
                     $iconComponent = "lucide-{$icon}";
                 @endphp
-                {{-- @dd($iconComponent) --}}
+
                 <x-dynamic-component 
                 :component="$iconComponent" 
                 @class([
@@ -95,14 +95,15 @@
         @endif
 
         <!-- Input field -->
+        {{-- @dd($value) --}}
         <input
             type="{{ $type === 'password' && $showPasswordToggle ? 'text' : $type }}"
             x-bind:type="{{ $type === 'password' && $showPasswordToggle ? '(showPassword ? \'text\' : \'password\')' : '\'' . $type . '\'' }}"
             id="{{ $inputId }}"
-            name="{{ $name }}"
+            @if($name) name="{{ $name }}" @endif
             class="{{ $inputClasses }}"
             placeholder="{{ $placeholder }}"
-            value="{{ old($name, $value) }}"
+            @if($name) value="{{ old($name, $value) }}" @else value="{{ $value }}" @endif
             @if($wireModel) wire:model="{{ $wireModel }}" @endif
             @if($required) required @endif
             @if($disabled) disabled @endif
@@ -147,4 +148,5 @@
             <span>{{ $errorMessage }}</span>
         </p>
     @endif
+    
 </div>
