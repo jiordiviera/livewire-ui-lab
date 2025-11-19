@@ -16,6 +16,7 @@
     --font-sans:
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: 'JetBrains Mono', monospace !important;
 
     /* Zinc colors for base palette */
     --color-zinc-50: #fafafa;

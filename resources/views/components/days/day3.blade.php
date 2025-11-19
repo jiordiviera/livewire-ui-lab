@@ -388,7 +388,7 @@ new class extends Component {
                 <div>
                     <h3 class="text-sm font-semibold text-foreground mb-2">Modal Usage</h3>
                     <div class="bg-muted/50 rounded-lg p-4">
-                        <x-markdown-content  class="prose prose-green mt-2 max-w-none text-sm dark:prose-invert" :content="get_resource_content('examples/modal-usage.blade.md')" />
+                        <x-markdown-content  class="prose prose-green text-gray-500 dark:text-gray-400 dark:prose-invert lg:max-w-none" :content="get_resource_content('examples/modal-usage.blade.md')" />
                     </div>
                 </div>
             </div>
