@@ -7,33 +7,11 @@ new class extends Component {
 };
 ?>
 
-<div class="min-h-screen bg-background p-8">
-    <div class="max-w-5xl mx-auto space-y-8">
-        <!-- Header -->
-        <header class="text-center space-y-4 pb-8">
-            <div
-                class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                <x-lucide-layout class="w-4 h-4" />
-                <span>Day 3 - Alert & Modal Components</span>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-foreground">Alert & Modal Components</h1>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Beautiful alerts with variants and modals with Alpine.js state management
-            </p>
-            <div class="flex items-center justify-center gap-4">
-                <a href="https://github.com/jiordiviera/livewire-ui-lab/blob/main/resources/views/components/ui/alert.blade.php"
-                    target="_blank" class="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                    <x-lucide-github class="w-4 h-4" />
-                    Alert source code
-                </a>
-                <span class="text-muted-foreground">•</span>
-                <a href="https://github.com/jiordiviera/livewire-ui-lab/blob/main/resources/views/components/ui/modal.blade.php"
-                    target="_blank" class="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                    <x-lucide-github class="w-4 h-4" />
-                    Modal source code
-                </a>
-            </div>
-        </header>
+<x-ui.day-container
+    :dayNumber="$dayNumber"
+    title="Alert & Modal Components"
+    description="Beautiful alerts with variants and modals with Alpine.js state management"
+>
 
         <!-- Alert Component Section -->
         <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-8 space-y-8">
@@ -393,5 +371,4 @@ new class extends Component {
                 </div>
             </div>
         </section>
-    </div>
-</div>
+</x-ui.day-container>

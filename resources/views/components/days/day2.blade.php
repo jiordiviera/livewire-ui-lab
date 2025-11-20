@@ -3,6 +3,7 @@
 use Livewire\Component;
 
 new class extends Component {
+    public int $dayNumber;
     public bool $loading = false;
 
     public function handleClick()
@@ -14,15 +15,11 @@ new class extends Component {
 };
 ?>
 
-<div class="min-h-screen bg-background p-8">
-    <div class="max-w-6xl mx-auto space-y-12">
-        <!-- Header -->
-        <div class="text-center space-y-4">
-            <h1 class="text-4xl font-bold text-foreground">Button Component Showcase</h1>
-            <p class="text-lg text-muted-foreground">
-                Complete button system with variants, sizes, icons, and loading states
-            </p>
-        </div>
+<x-ui.day-container
+    :dayNumber="$dayNumber"
+    title="Button Component Showcase"
+    description="Complete button system with variants, sizes, icons, and loading states"
+>
 
         <!-- Variants -->
         <section class="bg-card border border-border rounded-2xl p-8 space-y-6">
@@ -302,10 +299,9 @@ new class extends Component {
             </div>
         </section>
 
-        <!-- Footer -->
-        <div class="text-center text-sm text-muted-foreground pt-8 border-t border-border">
-            <p>Built with Livewire v4, Tailwind CSS & Lucide Icons</p>
-            <p class="mt-2">Day 3 - Reusable Button Component 🚀</p>
-        </div>
+    <!-- Footer -->
+    <div class="text-center text-sm text-muted-foreground pt-8 border-t border-border">
+        <p>Built with Livewire v4, Tailwind CSS & Lucide Icons</p>
+        <p class="mt-2">Day 2 - Reusable Button Component 🚀</p>
     </div>
-</div>
+</x-ui.day-container>
