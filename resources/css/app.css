@@ -112,3 +112,7 @@
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+[x-cloak] {
+    display: none !important;
+}
