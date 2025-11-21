@@ -23,7 +23,7 @@
     }
 @endphp
 
-<div class="w-full" x-data="{
+<div class="w-full" wire:ignore data-test="dropdown-container" @if($name) data-test-name="{{ $name }}" @endif x-data="{
     open: false,
     selected: {{ json_encode($selectedOption) }},
     value: '{{ $value }}',
@@ -98,6 +98,7 @@
             type="button"
             id="{{ $id }}"
             @click="open = !open; focusedIndex = -1"
+            data-test="dropdown-trigger"
             @class([
                 'relative w-full px-4 py-2.5 text-left bg-background border rounded-lg transition-all duration-200',
                 'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background',
@@ -128,6 +129,7 @@
             x-cloak
             wire:ignore
             @click.away="open = false; search = ''"
+            data-test="dropdown-menu"
             x-transition:enter="transition ease-out duration-100"
             x-transition:enter-start="opacity-0 scale-95"
             x-transition:enter-end="opacity-100 scale-100"

@@ -37,7 +37,10 @@
     'flex gap-3',
     'items-start' => $description,
     'items-center' => !$description,
-]) x-data="{
+])
+data-test="toggle-container"
+@if($name) data-test-name="{{ $name }}" wire:key="toggle-{{ $name }}" @endif
+x-data="{
     checked: {{ $isChecked ? 'true' : 'false' }},
 
     toggle() {
@@ -59,6 +62,7 @@
         role="switch"
         :aria-checked="checked"
         id="{{ $id }}"
+        data-test="toggle-button"
         @class([
             'relative inline-flex shrink-0 cursor-pointer rounded-full transition-all duration-300 ease-out',
             'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background',
@@ -111,6 +115,7 @@
                     for="{{ $id }}"
                     class="block text-sm font-semibold text-foreground cursor-pointer select-none"
                     @click="toggle()"
+                    data-test="toggle-label"
                 >
                     {{ $label }}
                     @if($required)
