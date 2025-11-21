@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: 'html',
 
   use: {
-    baseURL: 'http://livewire-ui-lab.test',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://livewire-ui-lab.test',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
