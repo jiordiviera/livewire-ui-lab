@@ -3,14 +3,12 @@ import { test, expect } from '@playwright/test';
 test.describe('Dropdown Component - Day 4', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/ui/4');
-    // Wait for Livewire to be ready
     await page.waitForLoadState('networkidle');
   });
 
   test('dropdown opens and closes on click', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
-    const menu = dropdown.locator('[role="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Initially menu should be hidden
     await expect(menu).toBeHidden();
@@ -26,14 +24,11 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('dropdown keyboard navigation with arrow keys', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Focus and open with click
     await trigger.click();
-
-    // Wait for menu to be visible
-    const menu = dropdown.locator('[role="listbox"]');
     await expect(menu).toBeVisible();
 
     // Press ArrowDown to navigate
@@ -56,12 +51,11 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('dropdown selects option with Enter key', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Open dropdown
     await trigger.click();
-    const menu = dropdown.locator('[role="listbox"]');
     await expect(menu).toBeVisible();
 
     // Navigate to first option
@@ -73,15 +67,14 @@ test.describe('Dropdown Component - Day 4', () => {
     // Menu should close
     await expect(menu).toBeHidden();
 
-    // Trigger should show selected value (we need to check the actual text)
+    // Trigger should show selected value
     const selectedText = await trigger.textContent();
     expect(selectedText).toBeTruthy();
   });
 
   test('dropdown closes with Escape key', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
-    const menu = dropdown.locator('[role="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Open dropdown
     await trigger.click();
@@ -93,19 +86,20 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('searchable dropdown filters options', async ({ page }) => {
-    // Find the searchable dropdown (second one on the page)
-    const searchableDropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).nth(1);
-    const trigger = searchableDropdown.locator('button[aria-haspopup="listbox"]');
+    // Find the searchable dropdown (second one) using data-test-name
+    const containers = page.locator('[data-test="dropdown-container"]');
+    const searchableContainer = containers.nth(1);
+    const trigger = searchableContainer.locator('[data-test="dropdown-trigger"]');
 
     // Open dropdown
     await trigger.click();
 
     // Find search input
-    const searchInput = searchableDropdown.locator('input[type="text"][placeholder="Search..."]');
+    const searchInput = searchableContainer.locator('input[type="text"][placeholder="Search..."]');
     await expect(searchInput).toBeVisible();
 
     // Get initial option count
-    const menu = searchableDropdown.locator('[role="listbox"]');
+    const menu = searchableContainer.locator('[role="listbox"]');
     const initialCount = await menu.locator('button[role="option"]').count();
 
     // Type to filter
@@ -120,12 +114,11 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('dropdown shows selected value', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Open dropdown
     await trigger.click();
-    const menu = dropdown.locator('[role="listbox"]');
 
     // Click first option
     const firstOption = menu.locator('button[role="option"]').first();
@@ -140,12 +133,11 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('dropdown displays check icon on selected option', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Open dropdown
     await trigger.click();
-    const menu = dropdown.locator('[role="listbox"]');
 
     // Select first option
     const firstOption = menu.locator('button[role="option"]').first();
@@ -161,9 +153,7 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('disabled dropdown is not interactive', async ({ page }) => {
-    // This would need a disabled dropdown in the page
-    // For now, we test that disabled state can be applied
-    const trigger = page.locator('button[aria-haspopup="listbox"]:disabled').first();
+    const trigger = page.locator('[data-test="dropdown-trigger"]:disabled').first();
 
     if (await trigger.count() > 0) {
       await expect(trigger).toBeDisabled();
@@ -172,9 +162,8 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('dropdown accessibility - ARIA attributes', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
-    const menu = dropdown.locator('[role="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Check ARIA attributes on trigger
     await expect(trigger).toHaveAttribute('aria-haspopup', 'listbox');
@@ -194,12 +183,11 @@ test.describe('Dropdown Component - Day 4', () => {
   });
 
   test('dropdown Cameroon context - Country selection', async ({ page }) => {
-    const dropdown = page.locator('[wire\\:ignore]').filter({ has: page.locator('button[aria-haspopup="listbox"]') }).first();
-    const trigger = dropdown.locator('button[aria-haspopup="listbox"]');
+    const trigger = page.locator('[data-test="dropdown-trigger"]').first();
+    const menu = page.locator('[role="listbox"]').first();
 
     // Open dropdown
     await trigger.click();
-    const menu = dropdown.locator('[role="listbox"]');
 
     // Look for Cameroon option
     const cameroonOption = menu.locator('button[role="option"]').filter({ hasText: 'Cameroon' });
