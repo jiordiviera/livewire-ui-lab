@@ -53,6 +53,28 @@ bun run test:e2e:debug
 bun run test:e2e:report
 ```
 
+### Recording Tests (Development Only)
+
+Use Playwright's codegen to record your interactions and generate test code:
+
+```bash
+# Open codegen tool
+bun run test:e2e:codegen
+
+# Then navigate to any page and interact with it
+# Codegen will generate test code automatically
+```
+
+**Workflow:**
+1. Run `bun run test:e2e:codegen`
+2. Navigate to `/ui/4` (or any page)
+3. Interact with dropdowns, toggles, etc.
+4. Copy the generated code from the Playwright Inspector
+5. Paste and refine it in your `.spec.ts` files
+6. Add proper assertions and cleanup
+
+**Note:** Codegen is a development tool only - it's NOT run in CI. The CI runs the actual test files.
+
 ### Running Specific Tests
 
 ```bash
