@@ -109,6 +109,12 @@
     }
 }
 
+@layer utilities {
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
