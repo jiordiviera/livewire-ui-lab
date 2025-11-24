@@ -243,7 +243,7 @@ new class extends Component {
     </x-ui.day-section>
 
     <!-- Usage Examples Section -->
-    {{-- <x-ui.day-section title="Usage Examples">
+    <x-ui.day-section title="Usage Examples">
         <div class="space-y-4">
             <div>
                 <h3 class="text-sm font-semibold text-foreground mb-2">Progress Bar Usage</h3>
@@ -259,5 +259,5 @@ new class extends Component {
                 </div>
             </div>
         </div>
-    </x-ui.day-section> --}}
+    </x-ui.day-section>
 </x-ui.day-container>
