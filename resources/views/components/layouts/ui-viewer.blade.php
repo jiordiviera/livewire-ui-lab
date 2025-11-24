@@ -174,7 +174,6 @@
                     <div class="p-8 md:p-12 flex items-center justify-center bg-muted/30"
                         :class="{ 'min-h-[500px]': !fullscreen, 'min-h-screen': fullscreen, 'pt-20': fullscreen }">
                         <div class="w-full flex items-center justify-center">
-                            {{-- @dd($componentPath) --}}
                             @livewire($componentPath, ['dayNumber' => $dayNumber])
                         </div>
                     </div>
