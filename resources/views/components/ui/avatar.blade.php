@@ -63,7 +63,7 @@ if ($name) {
 }
 @endphp
 
-<span {{ $attributes->merge(['class' => "relative flex shrink-0 overflow-hidden {$sizeClasses} {$shapeClasses}"]) }}>
+<span {{ $attributes->merge(['class' => "relative flex shrink-0 {$sizeClasses} {$shapeClasses}"]) }}>
     @if($src)
         <img
             src="{{ $src }}"
