@@ -9,105 +9,86 @@
 ])
 
 @php
-    $sizeClasses = match($size) {
-        'xs' => 'size-6 text-xs',
-        'sm' => 'size-8 text-sm',
-        'md' => 'size-10 text-base',
-        'lg' => 'size-12 text-lg',
-        'xl' => 'size-14 text-xl',
-        '2xl' => 'size-16 text-2xl',
-        default => 'size-10 text-base',
-    };
+$sizeClasses = match ($size) {
+    'xs' => 'size-6 text-[10px]',
+    'sm' => 'size-8 text-xs',
+    'md' => 'size-10 text-sm',
+    'lg' => 'size-12 text-base',
+    'xl' => 'size-14 text-lg',
+    '2xl' => 'size-16 text-xl',
+    default => 'size-10 text-sm',
+};
 
-    $iconSizes = match($size) {
-        'xs' => 'size-3',
-        'sm' => 'size-4',
-        'md' => 'size-5',
-        'lg' => 'size-6',
-        'xl' => 'size-7',
-        '2xl' => 'size-8',
-        default => 'size-5',
-    };
+$iconSizes = match ($size) {
+    'xs' => 'size-3',
+    'sm' => 'size-4',
+    'md' => 'size-5',
+    'lg' => 'size-6',
+    'xl' => 'size-7',
+    '2xl' => 'size-8',
+    default => 'size-5',
+};
 
-    $shapeClasses = match($shape) {
-        'circle' => 'rounded-full',
-        'square' => 'rounded-md',
-        'rounded' => 'rounded-lg',
-        default => 'rounded-full',
-    };
+$shapeClasses = match ($shape) {
+    'circle' => 'rounded-full',
+    'square' => 'rounded-md',
+    'rounded' => 'rounded-lg',
+    default => 'rounded-full',
+};
 
-    $statusClasses = match($status) {
-        'online' => 'bg-green-500',
-        'offline' => 'bg-gray-400',
-        'busy' => 'bg-red-500',
-        'away' => 'bg-yellow-500',
-        default => '',
-    };
+$statusClasses = match ($status) {
+    'online' => 'bg-emerald-500',
+    'offline' => 'bg-zinc-400',
+    'busy' => 'bg-red-500',
+    'away' => 'bg-amber-400',
+    default => '',
+};
 
-    $statusSizeClasses = match($size) {
-        'xs' => 'size-1.5',
-        'sm' => 'size-2',
-        'md' => 'size-2.5',
-        'lg' => 'size-3',
-        'xl' => 'size-3.5',
-        '2xl' => 'size-4',
-        default => 'size-2.5',
-    };
+$statusSizeClasses = match ($size) {
+    'xs' => 'size-1.5',
+    'sm' => 'size-2',
+    'md' => 'size-2.5',
+    'lg' => 'size-3',
+    'xl' => 'size-3.5',
+    '2xl' => 'size-4',
+    default => 'size-2.5',
+};
 
-    // Generate initials from name
-    $initials = null;
-    if ($name) {
-        $words = explode(' ', trim($name));
-        if (count($words) >= 2) {
-            $initials = strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
-        } else {
-            $initials = strtoupper(substr($name, 0, 2));
-        }
-    }
-
-    $baseClasses = "relative inline-flex items-center justify-center overflow-hidden bg-muted {$sizeClasses} {$shapeClasses}";
+$initials = null;
+if ($name) {
+    $words = preg_split('/\s+/', trim($name));
+    $initials = count($words) >= 2
+        ? strtoupper(mb_substr($words[0], 0, 1) . mb_substr(end($words), 0, 1))
+        : strtoupper(mb_substr($name, 0, 2));
+}
 @endphp
 
-<div
-    {{ $attributes->merge(['class' => $baseClasses]) }}
-    data-test="avatar-container"
->
+<span {{ $attributes->merge(['class' => "relative flex shrink-0 overflow-hidden {$sizeClasses} {$shapeClasses}"]) }}>
     @if($src)
         <img
             src="{{ $src }}"
             alt="{{ $alt ?: $name }}"
-            class="size-full object-cover"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            data-test="avatar-image"
+            class="aspect-square size-full {{ $shapeClasses }}"
+            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
         />
-        {{-- Fallback container (hidden by default, shown on image error) --}}
-        <span
-            class="hidden items-center justify-center size-full bg-muted text-muted-foreground font-medium"
-            data-test="avatar-fallback"
-        >
+        <span class="hidden size-full items-center justify-center bg-muted font-medium text-muted-foreground {{ $shapeClasses }}">
             @if($initials)
                 {{ $initials }}
             @else
-                <x-dynamic-component :component="'lucide-' . $fallbackIcon" class="{{ $iconSizes }}" />
+                <x-lucide-user class="{{ $iconSizes }}" />
             @endif
         </span>
     @elseif($initials)
-        <span class="font-medium text-muted-foreground" data-test="avatar-initials">
+        <span class="flex size-full items-center justify-center bg-muted font-medium text-muted-foreground {{ $shapeClasses }}">
             {{ $initials }}
         </span>
     @else
-        <x-dynamic-component
-            :component="'lucide-' . $fallbackIcon"
-            class="{{ $iconSizes }} text-muted-foreground"
-            data-test="avatar-icon"
-        />
+        <span class="flex size-full items-center justify-center bg-muted text-muted-foreground {{ $shapeClasses }}">
+            <x-lucide-user class="{{ $iconSizes }}" />
+        </span>
     @endif
 
     @if($status)
-        <span
-            class="absolute bottom-0 right-0 block {{ $statusSizeClasses }} {{ $statusClasses }} rounded-full ring-2 ring-background"
-            data-test="avatar-status"
-            aria-label="{{ ucfirst($status) }}"
-        ></span>
+        <span class="absolute bottom-0 right-0 block {{ $statusSizeClasses }} {{ $statusClasses }} rounded-full ring-2 ring-background"></span>
     @endif
-</div>
+</span>
