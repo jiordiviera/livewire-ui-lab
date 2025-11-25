@@ -1,21 +1,3 @@
-# Pagination Component Usage
-
-A custom pagination component with full Livewire integration for navigating paginated data.
-
-## Features
-
-- ✅ Livewire `WithPagination` trait integration
-- ✅ Smart ellipsis logic for large page counts
-- ✅ Previous/Next navigation buttons
-- ✅ Disabled states for first/last pages
-- ✅ Results counter display
-- ✅ ARIA accessible navigation
-- ✅ Smooth transitions and hover effects
-
-## Basic Usage
-
-### 1. In Your Livewire Component
-
 ```php
 <?php
 
@@ -94,7 +76,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 public function getDataProperty()
 {
-    $allItems = collect([/* your data */]);
+    $allItems = collect([/*  */]);
     $perPage = 10;
     $currentPage = $this->getPage();
 
@@ -121,9 +103,9 @@ The component automatically handles:
 
 ## Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| `paginator` | `LengthAwarePaginator` | Yes | Laravel paginator instance |
+| Prop        | Type                   | Required | Description                |
+| ----------- | ---------------------- | -------- | -------------------------- |
+| `paginator` | `LengthAwarePaginator` | Yes      | Laravel paginator instance |
 
 ## Styling
 
