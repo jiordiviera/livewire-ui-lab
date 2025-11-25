@@ -109,7 +109,7 @@
                                 </a>
 
                                 <button @click="fullscreen = true"
-                                    class="p-2 rounded-lg bg-accent hover:bg-accent/80 text-accent-foreground transition-colors"
+                                    class="p-2 rounded-lg bg-accent hover:bg-accent/80 text-accent-foreground transition-colors cursor-pointer"
                                     title="Fullscreen" aria-label="Enter fullscreen">
                                     <x-lucide-maximize class="w-5 h-5" />
                                 </button>
