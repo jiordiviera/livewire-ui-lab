@@ -297,7 +297,7 @@ return new class extends Component {
                             </div>
                             <div>
                                 <span class="text-xs text-muted-foreground block mb-2">Square shape:</span>
-                                <x-ui.avatar-group :avatars="$this->avatars" :max="4" shape="square" />
+                                <x-ui.avatar-group :avatars="$this->avatars" :max="4" :shape="'square'" />
                             </div>
                         </div>
                     </div>

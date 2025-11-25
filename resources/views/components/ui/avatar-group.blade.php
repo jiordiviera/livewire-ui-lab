@@ -3,18 +3,17 @@
     'max' => 4,
     'size' => 'md',
     'shape' => 'circle',
-    'spacing' => '-2',
 ])
 
 @php
     $sizeClasses = match($size) {
-        'xs' => 'size-6 text-xs',
-        'sm' => 'size-8 text-sm',
-        'md' => 'size-10 text-base',
-        'lg' => 'size-12 text-lg',
-        'xl' => 'size-14 text-xl',
-        '2xl' => 'size-16 text-2xl',
-        default => 'size-10 text-base',
+        'xs' => 'size-6 text-[10px]',
+        'sm' => 'size-8 text-xs',
+        'md' => 'size-10 text-sm',
+        'lg' => 'size-12 text-base',
+        'xl' => 'size-14 text-lg',
+        '2xl' => 'size-16 text-xl',
+        default => 'size-10 text-sm',
     };
 
     $shapeClasses = match($shape) {
@@ -24,22 +23,23 @@
         default => 'rounded-full',
     };
 
-    $spacingClass = "ml-{$spacing}";
+    // Espacement négatif selon la taille
+    $spacingClasses = match($size) {
+        'xs' => '-ml-1.5',
+        'sm' => '-ml-2',
+        'md' => '-ml-2.5',
+        'lg' => '-ml-3',
+        'xl' => '-ml-3.5',
+        '2xl' => '-ml-4',
+        default => '-ml-2.5',
+    };
 
-    $visibleAvatars = array_slice($avatars, 0, $max);
+    $visibleAvatars = collect($avatars)->take($max);
     $hiddenCount = max(0, count($avatars) - $max);
-
-    // Convert to collection for easier handling
-    $avatarsCollection = collect($avatars);
 @endphp
 
-<div
-    {{ $attributes->merge(['class' => 'flex items-center']) }}
-    data-test="avatar-group"
-    role="group"
-    aria-label="Group of {{ count($avatars) }} avatars"
->
-    @foreach($avatarsCollection->take($max) as $index => $avatar)
+<div {{ $attributes->merge(['class' => 'flex items-center -space-x-0']) }}>
+    @foreach($visibleAvatars as $index => $avatar)
         @php
             $avatarSrc = is_array($avatar) ? ($avatar['src'] ?? $avatar['image'] ?? null) : $avatar;
             $avatarName = is_array($avatar) ? ($avatar['name'] ?? $avatar['alt'] ?? null) : null;
@@ -48,9 +48,8 @@
         @endphp
 
         <div
-            class="{{ $index > 0 ? $spacingClass : '' }} relative ring-2 ring-background {{ $shapeClasses }}"
-            style="z-index: {{ count($visibleAvatars) - $index }}"
-            data-test="avatar-group-item"
+            class="{{ $index > 0 ? $spacingClasses : '' }} ring-2 ring-background {{ $shapeClasses }}"
+            style="z-index: {{ $max - $index }}"
         >
             <x-ui.avatar
                 :src="$avatarSrc"
@@ -65,13 +64,10 @@
 
     @if($hiddenCount > 0)
         <div
-            class="{{ $spacingClass }} relative inline-flex items-center justify-center {{ $sizeClasses }} {{ $shapeClasses }} bg-muted ring-2 ring-background"
+            class="{{ $spacingClasses }} inline-flex items-center justify-center {{ $sizeClasses }} {{ $shapeClasses }} bg-muted ring-2 ring-background"
             style="z-index: 0"
-            data-test="avatar-group-overflow"
         >
-            <span class="font-medium text-muted-foreground" data-test="avatar-group-count">
-                +{{ $hiddenCount }}
-            </span>
+            <span class="font-medium text-muted-foreground">+{{ $hiddenCount }}</span>
         </div>
     @endif
 </div>
