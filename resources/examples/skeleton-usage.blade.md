@@ -1,6 +1,6 @@
 ## Skeleton Loader Component
 
-Le composant `<x-ui.skeleton>` affiche un placeholder animé pendant le chargement.
+Le composant `<x-ui.skeleton>` affiche un placeholder animé pendant le chargement. 100% Tailwind CSS.
 
 ### Basic Usage
 
@@ -33,19 +33,6 @@ Le composant `<x-ui.skeleton>` affiche un placeholder animé pendant le chargeme
 <x-ui.skeleton variant="thumbnail" />
 ```
 
-### Animations
-
-```blade
-{{-- Pulse animation (default) --}}
-<x-ui.skeleton animation="pulse" />
-
-{{-- Wave animation (shimmer effect) --}}
-<x-ui.skeleton animation="wave" />
-
-{{-- No animation --}}
-<x-ui.skeleton animation="none" />
-```
-
 ### Multiple Lines
 
 ```blade
@@ -56,17 +43,20 @@ Le composant `<x-ui.skeleton>` affiche un placeholder animé pendant le chargeme
 <x-ui.skeleton variant="text" :count="3" gap="4" />
 ```
 
-### Custom Sizes
+### Custom Sizes (Tailwind Classes)
 
 ```blade
-{{-- Using width and height props --}}
-<x-ui.skeleton width="200px" height="100px" />
+{{-- Square 96px --}}
+<x-ui.skeleton class="size-24" rounded="lg" />
 
-{{-- Square with rounded corners --}}
-<x-ui.skeleton width="80px" height="80px" rounded="lg" />
+{{-- Custom width/height --}}
+<x-ui.skeleton class="w-36 h-5" />
 
-{{-- Circle --}}
-<x-ui.skeleton width="60px" height="60px" rounded="full" />
+{{-- Circle 80px --}}
+<x-ui.skeleton class="size-20" rounded="full" />
+
+{{-- Full width, fixed height --}}
+<x-ui.skeleton class="w-full h-12" />
 ```
 
 ### Rounded Options
@@ -102,7 +92,7 @@ Le composant `<x-ui.skeleton>` affiche un placeholder animé pendant le chargeme
 
 ```blade
 <div class="p-4 border rounded-lg">
-    <x-ui.skeleton variant="image" animation="wave" class="mb-4" />
+    <x-ui.skeleton variant="image" class="mb-4" />
     <x-ui.skeleton variant="title" class="mb-2" />
     <x-ui.skeleton variant="text" :count="2" />
     <x-ui.skeleton variant="button" class="mt-4" />
@@ -114,12 +104,10 @@ Le composant `<x-ui.skeleton>` affiche un placeholder animé pendant le chargeme
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `variant` | string | `default` | Predefined variant (text, title, avatar, button, card, image, thumbnail) |
-| `animation` | string | `pulse` | Animation type (pulse, wave, none) |
 | `rounded` | string | `md` | Border radius (none, sm, md, lg, xl, full) |
-| `width` | string | `null` | Custom width (e.g., "200px", "100%") |
-| `height` | string | `null` | Custom height (e.g., "50px") |
 | `count` | int | `1` | Number of skeleton items to render |
-| `gap` | string | `2` | Gap between items when count > 1 |
+| `gap` | string | `2` | Gap between items when count > 1 (1-6) |
+| `class` | string | `''` | Custom Tailwind classes for sizing |
 
 ### Testing Attributes
 

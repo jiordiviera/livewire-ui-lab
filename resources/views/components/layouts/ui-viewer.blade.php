@@ -6,11 +6,12 @@
     @include('partials.head')
 </head>
 
-<body class="h-full transition-colors duration-200" x-data="{ fullscreen: false }"
+<body class="h-full scroll-smooth transition-colors duration-200" x-data="{ fullscreen: false }"
     @keydown.escape.window="fullscreen = false">
     <div class="min-h-full flex flex-col">
         <!-- Header -->
-        <header class="bg-card shadow-sm border-b border-border sticky top-0 z-40" x-show="!fullscreen" x-transition x-cloak>
+        <header class="bg-card shadow-sm border-b border-border sticky top-0 z-40" x-show="!fullscreen" x-transition
+            x-cloak>
             <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
                 <!-- Desktop Navigation -->
                 <div class="hidden sm:flex items-center justify-between h-14 md:h-16">
@@ -97,7 +98,8 @@
                     :class="{ '!rounded-none !shadow-none !border-0': fullscreen }">
 
                     <!-- Card Header -->
-                    <div class="bg-card border-b border-border px-3 sm:px-4 md:px-6 py-3 sm:py-4" x-show="!fullscreen" x-transition x-cloak>
+                    <div class="bg-card border-b border-border px-3 sm:px-4 md:px-6 py-3 sm:py-4" x-show="!fullscreen"
+                        x-transition x-cloak>
                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                             <div class="min-w-0">
                                 <h2 class="text-base sm:text-lg font-semibold text-foreground truncate">
@@ -161,8 +163,7 @@
                     </div>
 
                     <!-- Component Zone -->
-                    <div class="p-0 bg-muted/30"
-                        :class="{ 'min-h-screen pt-14 sm:pt-16': fullscreen }">
+                    <div class="p-0 bg-muted/30" :class="{ 'min-h-screen pt-14 sm:pt-16': fullscreen }">
                         <div class="w-full">
                             @livewire($componentPath, ['dayNumber' => $dayNumber])
                         </div>
@@ -174,7 +175,8 @@
         <!-- Footer -->
         <footer class="bg-card border-t border-border mt-auto" x-show="!fullscreen" x-transition x-cloak>
             <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4">
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
                     <p>100 Days of UI Challenge - Made with ❤️ by
                         <a href="https://github.com/jiordiviera" target="_blank" class="text-primary hover:underline">
                             Jiordi Viera

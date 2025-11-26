@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
+/* @import '../../vendor/fila'; */
+
 @import './torchlight.css';
-@import '../../vendor/livewire/flux/dist/flux.css';
 
 @plugin '@tailwindcss/typography';
 
@@ -105,36 +106,14 @@
     body {
         @apply text-foreground bg-background font-sans;
     }
+    table {
+        @apply block overflow-x-scroll;
+    }
 }
 
 @layer utilities {
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
-    }
-
-    /* Skeleton wave animation */
-    .skeleton-wave {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .skeleton-wave::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        transform: translateX(-100%);
-        background: linear-gradient(90deg, transparent, oklch(1 0 0 / 20%), transparent);
-        animation: skeleton-wave 1.5s infinite;
-    }
-
-    .dark .skeleton-wave::after {
-        background: linear-gradient(90deg, transparent, oklch(1 0 0 / 10%), transparent);
-    }
-
-    @keyframes skeleton-wave {
-        100% {
-            transform: translateX(100%);
-        }
     }
 }
 

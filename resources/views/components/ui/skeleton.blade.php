@@ -1,16 +1,12 @@
 @props([
     'variant' => 'default',
-    'animation' => 'pulse',
     'rounded' => 'md',
-    'width' => null,
-    'height' => null,
+    'class' => '',
     'count' => 1,
     'gap' => '2',
 ])
 
 @php
-    $baseClasses = 'bg-muted';
-
     $roundedClasses = match($rounded) {
         'none' => 'rounded-none',
         'sm' => 'rounded-sm',
@@ -19,13 +15,6 @@
         'xl' => 'rounded-xl',
         'full' => 'rounded-full',
         default => 'rounded-md',
-    };
-
-    $animationClasses = match($animation) {
-        'pulse' => 'animate-pulse',
-        'wave' => 'skeleton-wave',
-        'none' => '',
-        default => 'animate-pulse',
     };
 
     $variantClasses = match($variant) {
@@ -41,28 +30,24 @@
         default => '',
     };
 
-    $sizeStyle = '';
-    if ($width) {
-        $sizeStyle .= "width: {$width};";
-    }
-    if ($height) {
-        $sizeStyle .= "height: {$height};";
-    }
+    $gapClasses = match($gap) {
+        '1' => 'gap-1',
+        '2' => 'gap-2',
+        '3' => 'gap-3',
+        '4' => 'gap-4',
+        '5' => 'gap-5',
+        '6' => 'gap-6',
+        default => 'gap-2',
+    };
 
-    $classes = \Illuminate\Support\Arr::toCssClasses([
-        $baseClasses,
-        $roundedClasses,
-        $animationClasses,
-        $variantClasses,
-    ]);
+    $classes = "bg-muted animate-pulse {$roundedClasses} {$variantClasses}";
 @endphp
 
 @if($count > 1)
-    <div class="flex flex-col gap-{{ $gap }}" data-test="skeleton-group">
+    <div class="flex flex-col {{ $gapClasses }}" data-test="skeleton-group">
         @for($i = 0; $i < $count; $i++)
             <div
                 {{ $attributes->merge(['class' => $classes]) }}
-                @if($sizeStyle) style="{{ $sizeStyle }}" @endif
                 aria-hidden="true"
                 data-test="skeleton-item"
             ></div>
@@ -71,7 +56,6 @@
 @else
     <div
         {{ $attributes->merge(['class' => $classes]) }}
-        @if($sizeStyle) style="{{ $sizeStyle }}" @endif
         aria-hidden="true"
         data-test="skeleton-item"
     ></div>
