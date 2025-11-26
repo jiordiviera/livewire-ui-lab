@@ -4,20 +4,20 @@
     'subtitle' => null,
 ])
 
-<section {{ $attributes->merge(['class' => 'bg-card border border-border rounded-2xl p-8 space-y-6']) }}>
+<section {{ $attributes->merge(['class' => 'bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6']) }}>
     @if($title || $icon)
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 sm:gap-3">
             @if($icon)
-                <div class="p-2 bg-primary/10 rounded-lg">
-                    <x-dynamic-component :component="'lucide-' . $icon" class="h-6 w-6 text-primary" />
+                <div class="p-1.5 sm:p-2 bg-primary/10 rounded-lg shrink-0">
+                    <x-dynamic-component :component="'lucide-' . $icon" class="size-5 sm:size-6 text-primary" />
                 </div>
             @endif
 
             @if($title)
-                <div>
-                    <h2 class="text-2xl font-bold text-foreground">{{ $title }}</h2>
+                <div class="min-w-0">
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-foreground truncate">{{ $title }}</h2>
                     @if($subtitle)
-                        <p class="text-sm text-muted-foreground">{{ $subtitle }}</p>
+                        <p class="text-xs sm:text-sm text-muted-foreground line-clamp-2">{{ $subtitle }}</p>
                     @endif
                 </div>
             @endif
