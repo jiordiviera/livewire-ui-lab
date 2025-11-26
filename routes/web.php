@@ -15,18 +15,18 @@ Route::get('/ui/{day}', function (int $day) {
 
     // Livewire v4 components use emoji prefix
     $componentName = "day{$day}";
-    $componentPath = resource_path("views/components/days/{$componentName}.blade.php");
+    $componentPath = resource_path("views/livewire/days/{$componentName}.blade.php");
 
     // we check if the Livewire component file exists
-    if (! file_exists($componentPath)) {
+    if (!file_exists($componentPath)) {
         return view('components.layouts.ui-viewer', [
             'dayNumber' => $day,
             'componentPath' => "days.{$componentName}",
             'error' => "Component for day {$day} doesn't exist yet.",
         ]);
     }
-    $hasNextDay = file_exists(resource_path('views/components/days/day'.($day + 1).'.blade.php'));
-    $hasPreviousDay = file_exists(resource_path('views/components/days/day'.($day - 1).'.blade.php'));
+    $hasNextDay = file_exists(resource_path('views/livewire/days/day' . ($day + 1) . '.blade.php'));
+    $hasPreviousDay = file_exists(resource_path('views/livewire/days/day' . ($day - 1) . '.blade.php'));
 
     return view('components.layouts.ui-viewer', [
         'dayNumber' => $day,

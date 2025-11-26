@@ -56,7 +56,7 @@ return [
     ],
 
     'heading_permalink' => [
-        'html_class' => 'anchor mr-2 !text-primary-500 !no-underline hover:!text-primary-500 focus:outline-none',
+        'html_class' => 'anchor mr-2 !text-primary !no-underline hover:!text-primary focus:outline-none',
         'fragment_prefix' => '',
         'id_prefix' => '',
         'symbol' => '#',
