@@ -2,10 +2,9 @@
     <div class="grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
         {{-- Skeleton Loader Section --}}
         <x-ui.day-section icon="loader" title="Skeleton Loader">
-            {{-- <div class="space-y-6"> --}}
             {{-- Description --}}
             <p class="text-sm text-muted-foreground">
-                Composant d'état de chargement pour améliorer l'expérience utilisateur perçue.
+                Loading state component to improve perceived user experience.
             </p>
 
             {{-- Features list --}}
@@ -14,15 +13,15 @@
                 <ul class="space-y-1 text-sm text-muted-foreground">
                     <li class="flex items-start gap-2">
                         <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                        <span>Animation pulse (Tailwind natif)</span>
+                        <span>Pulse animation (native Tailwind)</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                        <span>Variantes prédéfinies (text, title, avatar, card)</span>
+                        <span>Predefined variants (text, title, avatar, card)</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                        <span>Tailles personnalisables</span>
+                        <span>Customizable sizes</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
@@ -112,7 +111,6 @@
                     </div>
                 </div>
             </div>
-            {{-- </div> --}}
         </x-ui.day-section>
 
         {{-- Avatar Section --}}
@@ -120,7 +118,7 @@
             <div class="space-y-6">
                 {{-- Description --}}
                 <p class="text-sm text-muted-foreground">
-                    Composant d'affichage d'identité avec gestion automatique du fallback.
+                    Identity display component with automatic fallback handling.
                 </p>
 
                 {{-- Features list --}}
@@ -129,23 +127,23 @@
                     <ul class="space-y-1 text-sm text-muted-foreground">
                         <li class="flex items-start gap-2">
                             <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                            <span>Fallback automatique (initiales ou icône)</span>
+                            <span>Automatic fallback (initials or icon)</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                            <span>Indicateur de statut (online, offline, busy, away)</span>
+                            <span>Status indicator (online, offline, busy, away)</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                            <span>Tailles multiples (xs à 2xl)</span>
+                            <span>Multiple sizes (xs to 2xl)</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                            <span>Formes (circle, square, rounded)</span>
+                            <span>Shapes (circle, square, rounded)</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <x-lucide-check class="size-4 text-green-500 mt-0.5 shrink-0" />
-                            <span>Avatar Group avec badge +X</span>
+                            <span>Avatar Group with +X badge</span>
                         </li>
                     </ul>
                 </div>
@@ -208,19 +206,19 @@
                         <div class="p-4 bg-muted/30 rounded-lg flex items-center gap-4">
                             <div class="text-center">
                                 <x-ui.avatar name="Kamga Alain" />
-                                <span class="text-xs text-muted-foreground mt-1 block">Initiales</span>
+                                <span class="text-xs text-muted-foreground mt-1 block">Initials</span>
                             </div>
                             <div class="text-center">
                                 <x-ui.avatar name="Jean" />
-                                <span class="text-xs text-muted-foreground mt-1 block">Nom court</span>
+                                <span class="text-xs text-muted-foreground mt-1 block">Short name</span>
                             </div>
                             <div class="text-center">
                                 <x-ui.avatar />
-                                <span class="text-xs text-muted-foreground mt-1 block">Par défaut</span>
+                                <span class="text-xs text-muted-foreground mt-1 block">Default</span>
                             </div>
                             <div class="text-center">
                                 <x-ui.avatar src="https://invalid-url.com/image.jpg" name="Eyenga Rose" />
-                                <span class="text-xs text-muted-foreground mt-1 block">Image invalide</span>
+                                <span class="text-xs text-muted-foreground mt-1 block">Invalid image</span>
                             </div>
                         </div>
                     </div>
@@ -280,16 +278,15 @@
         <div class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h3 class="text-sm font-semibold text-foreground">Profil Utilisateur - Simulation de chargement</h3>
-                    <p class="text-xs text-muted-foreground mt-1">Cliquez pour basculer entre l'état de chargement et le
-                        contenu</p>
+                    <h3 class="text-sm font-semibold text-foreground">User Profile - Loading simulation</h3>
+                    <p class="text-xs text-muted-foreground mt-1">Click to toggle between loading state and content</p>
                 </div>
                 <button
                     wire:click="toggleLoading"
                     class="px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                     data-test="toggle-loading-btn"
                 >
-                    {{ $isLoading ? 'Afficher contenu' : 'Simuler chargement' }}
+                    {{ $isLoading ? 'Show content' : 'Simulate loading' }}
                 </button>
             </div>
 
@@ -315,10 +312,10 @@
                         />
                         <div class="flex-1">
                             <h4 class="font-semibold text-foreground">Ngono Marie</h4>
-                            <p class="text-sm text-muted-foreground">Développeuse Full Stack</p>
+                            <p class="text-sm text-muted-foreground">Full Stack Developer</p>
                             <p class="text-sm text-muted-foreground mt-2">
-                                Basée à Yaoundé, Cameroun. Passionnée par le développement web moderne
-                                et les interfaces utilisateur élégantes.
+                                Based in Yaounde, Cameroon. Passionate about modern web development
+                                and elegant user interfaces.
                             </p>
                         </div>
                     </div>
@@ -327,7 +324,7 @@
 
             {{-- Team Members Example --}}
             <div class="p-6 border border-border rounded-lg bg-card">
-                <h4 class="text-sm font-semibold text-foreground mb-4">Équipe de développement</h4>
+                <h4 class="text-sm font-semibold text-foreground mb-4">Development Team</h4>
                 @if($isLoading)
                     <div class="flex items-center gap-4" data-test="team-skeleton">
                         <div class="flex -space-x-2">
@@ -340,7 +337,7 @@
                 @else
                     <div class="flex items-center gap-4" data-test="team-loaded">
                         <x-ui.avatar-group :avatars="$this->avatars" :max="5" />
-                        <span class="text-sm text-muted-foreground">{{ count($this->avatars) }} membres</span>
+                        <span class="text-sm text-muted-foreground">{{ count($this->avatars) }} members</span>
                     </div>
                 @endif
             </div>
