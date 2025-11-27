@@ -106,9 +106,9 @@
     body {
         @apply text-foreground bg-background font-sans;
     }
-    table {
+    /* table {
         @apply block overflow-x-scroll;
-    }
+    } */
 }
 
 @layer utilities {

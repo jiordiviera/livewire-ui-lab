@@ -12,7 +12,7 @@
 ])
 
 @php
-    $tableId = 'data-table-' . uniqid();
+$tableId = 'data-table-' . uniqid();
 @endphp
 
 <div
@@ -205,12 +205,12 @@
 
     {{-- Table --}}
     <div class="overflow-x-auto border border-border rounded-xl" data-test="data-table-wrapper">
-        <table class="w-full table-auto" data-test="data-table">
-            <thead class="bg-muted/50">
-                <tr>
+        <table class="w-full table-auto caption-bottom text-sm" data-test="data-table">
+            <thead class="bg-muted/50 [&_tr]:border-b">
+                <tr class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors">
                     <template x-for="col in columns" :key="col.key">
                         <th
-                            class="px-4 py-3 text-left text-sm font-semibold text-foreground"
+                            class="px-4 py-3 text-left text-sm font-semibold text-foreground w-[100px]"
                             :class="{ 'cursor-pointer select-none hover:bg-muted/80 transition-colors': col.sortable !== false && {{ $sortable ? 'true' : 'false' }} }"
                             @click="col.sortable !== false && {{ $sortable ? 'true' : 'false' }} ? sort(col.key) : null"
                         >
