@@ -178,19 +178,3 @@ new class extends Component {
 | `label` | string | required | Column header |
 | `sortable` | bool | `true` | Enable sorting |
 | `filterable` | bool | `false` | Enable filter dropdown |
-
-### Testing Attributes
-
-| Attribute | Description |
-|-----------|-------------|
-| `data-test="data-table-container"` | Main wrapper |
-| `data-test="data-table-toolbar"` | Search/filter toolbar |
-| `data-test="data-table-search"` | Search input |
-| `data-test="data-table-filters"` | Filter dropdowns |
-| `data-test="data-table-reset"` | Reset button |
-| `data-test="data-table-wrapper"` | Table wrapper |
-| `data-test="data-table"` | Table element |
-| `data-test="data-table-row"` | Data row |
-| `data-test="data-table-pagination"` | Pagination wrapper |
-| `data-test="data-table-info"` | Showing X of Y info |
-| `data-test="data-table-page-controls"` | Page controls |

@@ -299,4 +299,30 @@
             </div>
         </div>
     </x-ui.day-section>
+
+    {{-- Usage Examples Section --}}
+    <x-ui.day-section title="Usage Examples" class="mt-8">
+        <div class="space-y-4">
+            <div>
+                <h3 class="text-sm font-semibold text-foreground mb-2">Tooltip Usage</h3>
+                <div class="bg-muted/50 rounded-lg p-4">
+                    <x-markdown-content :content="get_resource_content('examples/tooltip-usage.blade.md')" />
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-semibold text-foreground mb-2">Popover Usage</h3>
+                <div class="bg-muted/50 rounded-lg p-4">
+                    <x-markdown-content :content="get_resource_content('examples/popover-usage.blade.md')" />
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-semibold text-foreground mb-2">Data Table Usage</h3>
+                <div class="bg-muted/50 rounded-lg p-4">
+                    <x-markdown-content :content="get_resource_content('examples/data-table-usage.blade.md')" />
+                </div>
+            </div>
+        </div>
+    </x-ui.day-section>
 </x-ui.day-container>

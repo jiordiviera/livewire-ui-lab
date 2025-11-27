@@ -137,11 +137,3 @@ The `<x-ui.popover>` component displays rich content in a floating panel. 100% T
 | `trigger` | string | `click` | Trigger mode (click, hover) |
 | `align` | string | `center` | Alignment (start, center, end) |
 | `width` | string | `auto` | Width (auto, sm, md, lg, full) |
-
-### Testing Attributes
-
-| Attribute | Description |
-|-----------|-------------|
-| `data-test="popover-container"` | Main wrapper |
-| `data-test="popover-trigger"` | Trigger element |
-| `data-test="popover-content"` | Popover content |

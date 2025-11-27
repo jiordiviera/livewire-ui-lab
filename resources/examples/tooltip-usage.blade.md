@@ -74,12 +74,3 @@ The `<x-ui.tooltip>` component displays contextual information on hover. 100% Ta
 | `position` | string | `top` | Position (top, bottom, left, right) |
 | `delay` | int | `200` | Delay before showing (ms) |
 | `arrow` | bool | `true` | Show arrow pointer |
-
-### Testing Attributes
-
-| Attribute | Description |
-|-----------|-------------|
-| `data-test="tooltip-container"` | Main wrapper |
-| `data-test="tooltip-trigger"` | Trigger element |
-| `data-test="tooltip-content"` | Tooltip content |
-| `data-test="tooltip-arrow"` | Arrow element |
