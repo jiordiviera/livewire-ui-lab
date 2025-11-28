@@ -80,8 +80,8 @@
             return classes[type] || classes.info;
         }
     }"
-    x-on:toast.window="add($event.detail)"
-    x-on:notify.window="add($event.detail)"
+    x-on:toast.window="add(Array.isArray($event.detail) ? $event.detail[0] : $event.detail)"
+    x-on:notify.window="add(Array.isArray($event.detail) ? $event.detail[0] : $event.detail)"
     class="fixed z-[100] {{ $positionClasses }} flex flex-col gap-2 pointer-events-none"
     data-test="toast-container"
 >
