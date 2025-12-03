@@ -13,6 +13,63 @@ Alpine.plugin(collapse)
 window.Alpine = Alpine
 
 document.addEventListener('alpine:init', () => {
+    // Tags Input Component
+    Alpine.data('tagsInput', (initialValue, options = {}) => ({
+        tags: Array.isArray(initialValue) ? initialValue : [],
+        inputValue: '',
+        error: '',
+        maxTags: options.maxTags || null,
+        allowDuplicates: options.allowDuplicates || false,
+        validateEmail: options.validateEmail || false,
+
+        init() {
+            // Nothing to do - tags is directly bound via @entangle
+        },
+
+        addTag() {
+            const value = this.inputValue.trim();
+
+            if (!value) return;
+
+            // Check max tags limit
+            if (this.maxTags && this.tags.length >= this.maxTags) {
+                this.error = `Maximum ${this.maxTags} tags allowed`;
+                return;
+            }
+
+            // Validate email if required
+            if (this.validateEmail && !this.isValidEmail(value)) {
+                this.error = 'Invalid email address';
+                return;
+            }
+
+            // Check duplicates
+            if (!this.allowDuplicates && this.tags.includes(value)) {
+                this.error = 'This tag already exists';
+                return;
+            }
+
+            this.tags.push(value);
+            this.inputValue = '';
+            this.error = '';
+        },
+
+        removeTag(index) {
+            this.tags.splice(index, 1);
+        },
+
+        handleBackspace(e) {
+            if (this.inputValue === '' && this.tags.length > 0) {
+                this.tags.pop();
+            }
+        },
+
+        isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    }));
+
     // Date Picker Component
     Alpine.data('datePicker', (initialValue) => ({
         open: false,
