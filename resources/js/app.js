@@ -13,6 +13,68 @@ Alpine.plugin(collapse)
 window.Alpine = Alpine
 
 document.addEventListener('alpine:init', () => {
+    // Range Slider Component
+    Alpine.data('rangeSlider', (initialValue, options = {}) => ({
+        value: initialValue,
+        min: options.min || 0,
+        max: options.max || 100,
+        step: options.step || 1,
+        type: options.type || 'single',
+
+        getPercentage(val) {
+            return ((val - this.min) / (this.max - this.min)) * 100;
+        },
+
+        getThumbOffset() {
+            // Thumb size offset for centering
+            return 8; // Half of default thumb size (16px / 2)
+        },
+
+        updateMin(newValue) {
+            newValue = parseFloat(newValue);
+            if (newValue >= this.value[1]) {
+                this.value[0] = this.value[1];
+            } else {
+                this.value[0] = newValue;
+            }
+        },
+
+        updateMax(newValue) {
+            newValue = parseFloat(newValue);
+            if (newValue <= this.value[0]) {
+                this.value[1] = this.value[0];
+            } else {
+                this.value[1] = newValue;
+            }
+        }
+    }));
+
+    // Rating Component
+    Alpine.data('rating', (initialValue, options = {}) => ({
+        value: initialValue || 0,
+        hoverValue: 0,
+        max: options.max || 5,
+        readonly: options.readonly || false,
+        allowHalf: options.allowHalf || false,
+
+        setRating(star) {
+            if (this.readonly) return;
+            this.value = star;
+        },
+
+        getStarFillWidth(star) {
+            const activeValue = this.hoverValue || this.value;
+
+            if (activeValue >= star) {
+                return 100;
+            } else if (this.allowHalf && activeValue >= star - 0.5) {
+                return 50;
+            } else {
+                return 0;
+            }
+        }
+    }));
+
     // Tags Input Component
     Alpine.data('tagsInput', (initialValue, options = {}) => ({
         tags: Array.isArray(initialValue) ? initialValue : [],
