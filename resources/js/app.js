@@ -13,6 +13,70 @@ Alpine.plugin(collapse)
 window.Alpine = Alpine
 
 document.addEventListener('alpine:init', () => {
+    // Carousel Component
+    Alpine.data('carousel', (options = {}) => ({
+        current: 0,
+        total: options.total || 0,
+        autoplay: options.autoplay || false,
+        interval: options.interval || 5000,
+        timer: null,
+
+        init() {
+            if (this.autoplay && this.total > 1) {
+                this.startAutoplay();
+            }
+        },
+
+        next() {
+            this.current = (this.current + 1) % this.total;
+            this.resetAutoplay();
+        },
+
+        prev() {
+            this.current = (this.current - 1 + this.total) % this.total;
+            this.resetAutoplay();
+        },
+
+        goTo(index) {
+            this.current = index;
+            this.resetAutoplay();
+        },
+
+        startAutoplay() {
+            this.timer = setInterval(() => this.next(), this.interval);
+        },
+
+        resetAutoplay() {
+            if (this.autoplay && this.timer) {
+                clearInterval(this.timer);
+                this.startAutoplay();
+            }
+        }
+    }));
+
+    // Pill Tabs Component
+    Alpine.data('pillTabs', (initialValue) => ({
+        active: initialValue || '',
+        canScrollLeft: false,
+        canScrollRight: false,
+
+        init() {
+            this.$nextTick(() => this.updateScrollState());
+        },
+
+        selectTab(tab) {
+            this.active = tab;
+        },
+
+        updateScrollState() {
+            const container = this.$refs.tabsContainer;
+            if (container) {
+                this.canScrollLeft = container.scrollLeft > 0;
+                this.canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 1);
+            }
+        }
+    }));
+
     // Range Slider Component
     Alpine.data('rangeSlider', (initialValue, options = {}) => ({
         value: initialValue,
