@@ -14,14 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: develop
-
-      - name: Create test branch
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git checkout -b ci-test-${{ github.run_id }} || git checkout ci-test-${{ github.run_id }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
