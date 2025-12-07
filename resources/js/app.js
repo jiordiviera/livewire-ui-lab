@@ -196,6 +196,57 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
+    // Color Picker Component
+    Alpine.data('colorPicker', (initialValue) => ({
+        color: initialValue || '#3b82f6',
+        open: false,
+        rgb: { r: 59, g: 130, b: 246 },
+
+        init() {
+            this.parseHexToRgb(this.color);
+            this.$watch('color', (val) => {
+                if (val && val.match(/^#[0-9A-Fa-f]{6}$/)) {
+                    this.parseHexToRgb(val);
+                }
+            });
+        },
+
+        parseHexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            if (result) {
+                this.rgb.r = parseInt(result[1], 16);
+                this.rgb.g = parseInt(result[2], 16);
+                this.rgb.b = parseInt(result[3], 16);
+            }
+        },
+
+        rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(x => {
+                const hex = parseInt(x).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+        },
+
+        updateFromRgb() {
+            this.color = this.rgbToHex(this.rgb.r, this.rgb.g, this.rgb.b);
+        },
+
+        selectColor(hex) {
+            this.color = hex;
+            this.parseHexToRgb(hex);
+        },
+
+        validateAndUpdate(value) {
+            if (value.match(/^#[0-9A-Fa-f]{6}$/)) {
+                this.color = value;
+            }
+        },
+
+        copyToClipboard() {
+            navigator.clipboard.writeText(this.color);
+        }
+    }));
+
     // Date Picker Component
     Alpine.data('datePicker', (initialValue) => ({
         open: false,
