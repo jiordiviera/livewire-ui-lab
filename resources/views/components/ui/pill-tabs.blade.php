@@ -8,21 +8,21 @@
 
 @php
     $sizeClasses = match($size) {
-        'sm' => 'text-xs px-3 py-1.5 gap-1',
-        'lg' => 'text-base px-5 py-2.5 gap-2',
-        default => 'text-sm px-4 py-2 gap-1.5',
+        'sm' => 'text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 gap-1',
+        'lg' => 'text-sm sm:text-base px-3 sm:px-5 py-1.5 sm:py-2.5 gap-1.5 sm:gap-2',
+        default => 'text-xs sm:text-sm px-2.5 sm:px-4 py-1.5 sm:py-2 gap-1 sm:gap-1.5',
     };
 
     $iconSize = match($size) {
         'sm' => 'size-3',
-        'lg' => 'size-5',
-        default => 'size-4',
+        'lg' => 'size-4 sm:size-5',
+        default => 'size-3.5 sm:size-4',
     };
 
     $containerPadding = match($size) {
-        'sm' => 'p-1',
-        'lg' => 'p-1.5',
-        default => 'p-1',
+        'sm' => 'p-0.5 sm:p-1',
+        'lg' => 'p-1 sm:p-1.5',
+        default => 'p-0.5 sm:p-1',
     };
 
     $wireModel = $attributes->wire('model')->value();
@@ -41,7 +41,7 @@
             <div
                 x-show="canScrollLeft"
                 x-cloak
-                class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"
+                class="absolute left-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"
             ></div>
         @endif
 
@@ -80,7 +80,7 @@
                     @endif
                     <span>{{ $label }}</span>
                     @if($badge !== null)
-                        <span class="inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 text-xs font-semibold rounded-full bg-primary text-primary-foreground">
+                        <span class="inline-flex items-center justify-center min-w-[1rem] sm:min-w-[1.25rem] h-4 sm:h-5 px-1 sm:px-1.5 text-[10px] sm:text-xs font-semibold rounded-full bg-primary text-primary-foreground">
                             {{ $badge }}
                         </span>
                     @endif
@@ -93,14 +93,14 @@
             <div
                 x-show="canScrollRight"
                 x-cloak
-                class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"
+                class="absolute right-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"
             ></div>
         @endif
     </div>
 
     {{-- Tab Content Slot --}}
     @if($slot->isNotEmpty())
-        <div class="mt-4">
+        <div class="mt-3 sm:mt-4">
             {{ $slot }}
         </div>
     @endif

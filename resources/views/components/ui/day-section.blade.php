@@ -4,7 +4,7 @@
     'subtitle' => null,
 ])
 
-<section {{ $attributes->merge(['class' => 'bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6']) }}>
+<section {{ $attributes->merge(['class' => 'bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 min-w-0']) }}>
     @if($title || $icon)
         <div class="flex items-center gap-2 sm:gap-3">
             @if($icon)
