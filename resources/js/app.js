@@ -196,6 +196,74 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
+    // Stepper Component
+    Alpine.data('stepper', (options = {}) => ({
+        currentStep: options.currentStep || 1,
+        totalSteps: options.totalSteps || 1,
+        clickable: options.clickable || false,
+        wireModel: options.wireModel || '',
+
+        init() {
+            // Sync with Livewire if wire:model is set
+            if (this.wireModel && this.$wire) {
+                // Watch for Livewire updates
+                this.$wire.$watch(this.wireModel, (value) => {
+                    this.currentStep = value;
+                });
+
+                // Watch for Alpine updates and sync to Livewire
+                this.$watch('currentStep', (value) => {
+                    this.$wire.set(this.wireModel, value);
+                });
+            }
+        },
+
+        goToStep(step) {
+            if (!this.clickable) return;
+            if (step > this.currentStep) return; // Can only go back to completed steps
+            this.currentStep = step;
+        },
+
+        nextStep() {
+            if (this.currentStep < this.totalSteps) {
+                this.currentStep++;
+            }
+        },
+
+        previousStep() {
+            if (this.currentStep > 1) {
+                this.currentStep--;
+            }
+        },
+
+        isCompleted(step) {
+            return this.currentStep > step;
+        },
+
+        isCurrent(step) {
+            return this.currentStep === step;
+        }
+    }));
+
+    // Progress Ring Component
+    Alpine.data('progressRing', (options = {}) => ({
+        value: options.value || 0,
+        max: options.max || 100,
+        wireModel: options.wireModel || '',
+
+        init() {
+            if (this.wireModel && this.$wire) {
+                this.$wire.$watch(this.wireModel, (val) => {
+                    this.value = val;
+                });
+            }
+        },
+
+        get percentage() {
+            return Math.min(100, Math.max(0, (this.value / this.max) * 100));
+        }
+    }));
+
     // Color Picker Component
     Alpine.data('colorPicker', (initialValue) => ({
         color: initialValue || '#3b82f6',
