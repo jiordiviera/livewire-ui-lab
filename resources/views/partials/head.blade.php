@@ -16,3 +16,4 @@
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @livewireStyles
+<script defer src="https://analytics.jiordiviera.me/script.js" data-website-id="d34c98a7-650b-4dd1-b017-724f6fe3cc0c"></script>
