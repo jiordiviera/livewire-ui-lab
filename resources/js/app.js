@@ -1,10 +1,14 @@
 import intersect from '@alpinejs/intersect'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
 import collapse from '@alpinejs/collapse'
+import Sortable from 'sortablejs'
 
 import './utils/helpers'
 import './utils/scrollspy'
 import './utils/clipboard'
+
+// Make Sortable available globally for Alpine
+window.Sortable = Sortable
 
 Alpine.plugin(intersect)
 Alpine.plugin(Tooltip)
@@ -261,6 +265,46 @@ document.addEventListener('alpine:init', () => {
 
         get percentage() {
             return Math.min(100, Math.max(0, (this.value / this.max) * 100));
+        }
+    }));
+
+    // Sortable List Component
+    Alpine.data('sortableList', (options = {}) => ({
+        items: options.items || [],
+        itemKey: options.itemKey || 'id',
+        sortable: null,
+        onUpdate: options.onUpdate || null,
+
+        init() {
+            this.$nextTick(() => {
+                const list = this.$refs.sortableList;
+                if (!list || !window.Sortable) return;
+
+                this.sortable = new window.Sortable(list, {
+                    animation: 150,
+                    ghostClass: 'opacity-50',
+                    dragClass: 'shadow-lg',
+                    handle: '.sortable-handle',
+                    forceFallback: true,
+                    fallbackClass: 'sortable-fallback',
+                    onEnd: (evt) => {
+                        // Get all item IDs in new order
+                        const items = list.querySelectorAll('[data-id]');
+                        const orderedIds = Array.from(items).map(item => parseInt(item.dataset.id));
+
+                        // Call the callback if provided
+                        if (this.onUpdate && typeof this.onUpdate === 'function') {
+                            this.onUpdate(orderedIds);
+                        }
+                    }
+                });
+            });
+        },
+
+        destroy() {
+            if (this.sortable) {
+                this.sortable.destroy();
+            }
         }
     }));
 
