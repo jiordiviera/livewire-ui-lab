@@ -359,6 +359,49 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
+    // Tree View Component
+    Alpine.data('treeView', (options = {}) => ({
+        defaultExpanded: options.defaultExpanded || false,
+        selectable: options.selectable || false,
+        selectedItems: [],
+
+        toggleItem(id) {
+            if (!this.selectable) return;
+
+            const index = this.selectedItems.indexOf(id);
+            if (index > -1) {
+                this.selectedItems.splice(index, 1);
+            } else {
+                this.selectedItems.push(id);
+            }
+        },
+
+        isSelected(id) {
+            return this.selectedItems.includes(id);
+        }
+    }));
+
+    // Code Snippet Component
+    Alpine.data('codeSnippet', (options = {}) => ({
+        code: options.code || '',
+        copyable: options.copyable !== false,
+        copied: false,
+
+        async copyCode() {
+            if (!this.copyable) return;
+
+            try {
+                await navigator.clipboard.writeText(this.code);
+                this.copied = true;
+                setTimeout(() => {
+                    this.copied = false;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        }
+    }));
+
     // Date Picker Component
     Alpine.data('datePicker', (initialValue) => ({
         open: false,
