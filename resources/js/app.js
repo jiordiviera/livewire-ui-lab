@@ -402,6 +402,54 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 
+    // Context Menu Component
+    Alpine.data('contextMenu', (options = {}) => ({
+        items: options.items || [],
+        isOpen: false,
+        position: { x: 0, y: 0 },
+
+        open(event) {
+            this.isOpen = true;
+            this.position = {
+                x: Math.min(event.clientX, window.innerWidth - 200),
+                y: Math.min(event.clientY, window.innerHeight - 300)
+            };
+        },
+
+        close() {
+            this.isOpen = false;
+        },
+
+        executeAction(action) {
+            if (action) {
+                this.$wire.handleContextAction(action);
+            }
+        }
+    }));
+
+    // Accordion Component
+    Alpine.data('accordion', (options = {}) => ({
+        multiple: options.multiple || false,
+        openItems: options.defaultOpen !== null ? [options.defaultOpen] : [],
+
+        toggle(index) {
+            if (this.multiple) {
+                const idx = this.openItems.indexOf(index);
+                if (idx > -1) {
+                    this.openItems.splice(idx, 1);
+                } else {
+                    this.openItems.push(index);
+                }
+            } else {
+                this.openItems = this.isOpen(index) ? [] : [index];
+            }
+        },
+
+        isOpen(index) {
+            return this.openItems.includes(index);
+        }
+    }));
+
     // Date Picker Component
     Alpine.data('datePicker', (initialValue) => ({
         open: false,
