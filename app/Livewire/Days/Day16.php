@@ -11,20 +11,29 @@ class Day16 extends Component
 
     // Stepper state
     public int $currentStep = 1;
+
     public int $totalSteps = 4;
 
     // Form data for stepper demo
     public string $name = '';
+
     public string $email = '';
+
     public string $phone = '';
+
     public string $address = '';
+
     public string $city = '';
+
     public string $paymentMethod = 'card';
 
     // Progress ring values
     public int $profileProgress = 75;
+
     public int $storageUsed = 45;
+
     public int $tasksCompleted = 8;
+
     public int $totalTasks = 12;
 
     public array $steps = [

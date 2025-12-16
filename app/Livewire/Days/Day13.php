@@ -10,11 +10,15 @@ class Day13 extends Component
     public int $dayNumber = 13;
 
     public $volume = 50;
+
     public $price = [25, 75];
+
     public $temperature = 20;
 
     public $rating = 0;
+
     public $productRating = 4.5;
+
     public $serviceRating = 3;
 
     public function updatedVolume($value): void
@@ -22,7 +26,7 @@ class Day13 extends Component
         $this->dispatch('toast', [
             'type' => 'info',
             'title' => 'Volume updated',
-            'message' => "Volume set to {$value}%"
+            'message' => "Volume set to {$value}%",
         ]);
     }
 
@@ -31,7 +35,7 @@ class Day13 extends Component
         $this->dispatch('toast', [
             'type' => 'success',
             'title' => 'Price range updated',
-            'message' => "Range: {$value[0]} - {$value[1]} FCFA"
+            'message' => "Range: {$value[0]} - {$value[1]} FCFA",
         ]);
     }
 
@@ -40,7 +44,7 @@ class Day13 extends Component
         $this->dispatch('toast', [
             'type' => 'success',
             'title' => 'Rating submitted',
-            'message' => "You rated {$value} stars"
+            'message' => "You rated {$value} stars",
         ]);
     }
 

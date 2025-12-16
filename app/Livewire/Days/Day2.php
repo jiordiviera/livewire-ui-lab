@@ -7,6 +7,7 @@ use Livewire\Component;
 class Day2 extends Component
 {
     public int $dayNumber;
+
     public bool $loading = false;
 
     public function handleClick(): void

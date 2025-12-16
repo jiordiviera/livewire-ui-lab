@@ -78,7 +78,7 @@ class Day17 extends Component
     public function updateTaskOrder(array $orderedIds): void
     {
         $tasksById = collect($this->tasks)->keyBy('id')->toArray();
-        $this->tasks = array_map(fn($id) => $tasksById[$id], $orderedIds);
+        $this->tasks = array_map(fn ($id) => $tasksById[$id], $orderedIds);
 
         $this->dispatch('toast', [
             'message' => 'Ordre des tâches mis à jour!',
@@ -96,6 +96,7 @@ class Day17 extends Component
                     'completed' => 'pending',
                 };
             }
+
             return $task;
         }, $this->tasks);
     }
@@ -124,7 +125,7 @@ class Day17 extends Component
     {
         $this->tasks = array_values(array_filter(
             $this->tasks,
-            fn($task) => $task['id'] !== $taskId
+            fn ($task) => $task['id'] !== $taskId
         ));
 
         $this->dispatch('toast', [

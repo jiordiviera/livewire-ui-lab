@@ -15,22 +15,22 @@ class Day14 extends Component
         [
             'src' => 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop',
             'alt' => 'Mountain landscape',
-            'caption' => 'Beautiful mountain landscape at sunset'
+            'caption' => 'Beautiful mountain landscape at sunset',
         ],
         [
             'src' => 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=450&fit=crop',
             'alt' => 'Nature scenery',
-            'caption' => 'Serene nature view with lake'
+            'caption' => 'Serene nature view with lake',
         ],
         [
             'src' => 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=450&fit=crop',
             'alt' => 'Forest path',
-            'caption' => 'Misty forest path in autumn'
+            'caption' => 'Misty forest path in autumn',
         ],
         [
             'src' => 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=450&fit=crop',
             'alt' => 'Green valley',
-            'caption' => 'Lush green valley panorama'
+            'caption' => 'Lush green valley panorama',
         ],
     ];
 
@@ -51,7 +51,7 @@ class Day14 extends Component
         $this->dispatch('toast', [
             'type' => 'info',
             'title' => 'Tab changed',
-            'message' => "Viewing: {$label}"
+            'message' => "Viewing: {$label}",
         ]);
     }
 

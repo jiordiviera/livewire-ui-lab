@@ -11,6 +11,7 @@ Artisan::command('inspire', function () {
 // Test command that fails (for testing smart-scheduler notifications)
 Artisan::command('test:fail', function () {
     $this->error('This command intentionally fails!');
+
     return 1; // Non-zero exit code = failure
 })->purpose('Test command that always fails');
 

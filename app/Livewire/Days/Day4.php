@@ -11,13 +11,18 @@ class Day4 extends Component
 
     // Dropdown state
     public string $country = '';
+
     public string $city = '';
+
     public string $framework = 'laravel';
 
     // Toggle states
     public bool $notifications = true;
+
     public bool $darkMode = false;
+
     public bool $autoSave = true;
+
     public bool $twoFactor = false;
 
     // Dropdown options

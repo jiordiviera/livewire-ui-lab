@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class Day8 extends Component
 {
-
     public int $dayNumber;
 
     public bool $isLoading = true;
@@ -29,7 +28,7 @@ class Day8 extends Component
 
     public function toggleLoading(): void
     {
-        $this->isLoading = !$this->isLoading;
+        $this->isLoading = ! $this->isLoading;
     }
 
     public function render(): View

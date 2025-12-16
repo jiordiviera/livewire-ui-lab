@@ -8,7 +8,9 @@ use Livewire\Component;
 class Day15 extends Component
 {
     public int $dayNumber = 15;
+
     public string $selectedColor = '#3b82f6';
+
     public string $themeColor = '#22c55e';
 
     public function updatedSelectedColor($value): void
@@ -19,9 +21,6 @@ class Day15 extends Component
         ]);
     }
 
-    /**
-     * @return View
-     */
     public function render(): View
     {
         return view('livewire.days.day15');

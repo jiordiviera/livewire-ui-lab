@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Output\RenderedContentInterface;
@@ -71,7 +70,7 @@ if (! function_exists('get_resource_content')) {
     /**
      * Get file content from resources directory
      *
-     * @param string $path Path relative to resources directory
+     * @param  string  $path  Path relative to resources directory
      * @return string File content or empty string if file doesn't exist
      */
     function get_resource_content(string $path): string
