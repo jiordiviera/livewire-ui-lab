@@ -2,6 +2,7 @@ import intersect from '@alpinejs/intersect'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
 import collapse from '@alpinejs/collapse'
 import Sortable from 'sortablejs'
+import './ui/carousel'
 
 import './utils/helpers'
 import './utils/scrollspy'
