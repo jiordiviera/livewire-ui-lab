@@ -2,7 +2,7 @@ import intersect from '@alpinejs/intersect'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
 import collapse from '@alpinejs/collapse'
 import Sortable from 'sortablejs'
-import './ui/carousel'
+import carousel from './ui/carousel'
 
 import './utils/helpers'
 import './utils/scrollspy'
@@ -19,45 +19,46 @@ window.Alpine = Alpine
 
 document.addEventListener('alpine:init', () => {
     // Carousel Component
-    Alpine.data('carousel', (options = {}) => ({
-        current: 0,
-        total: options.total || 0,
-        autoplay: options.autoplay || false,
-        interval: options.interval || 5000,
-        timer: null,
+    // Alpine.data('carousel', (options = {}) => ({
+    //     current: 0,
+    //     total: options.total || 0,
+    //     autoplay: options.autoplay || false,
+    //     interval: options.interval || 5000,
+    //     timer: null,
 
-        init() {
-            if (this.autoplay && this.total > 1) {
-                this.startAutoplay();
-            }
-        },
+    //     init() {
+    //         if (this.autoplay && this.total > 1) {
+    //             this.startAutoplay();
+    //         }
+    //     },
 
-        next() {
-            this.current = (this.current + 1) % this.total;
-            this.resetAutoplay();
-        },
+    //     next() {
+    //         this.current = (this.current + 1) % this.total;
+    //         this.resetAutoplay();
+    //     },
 
-        prev() {
-            this.current = (this.current - 1 + this.total) % this.total;
-            this.resetAutoplay();
-        },
+    //     prev() {
+    //         this.current = (this.current - 1 + this.total) % this.total;
+    //         this.resetAutoplay();
+    //     },
 
-        goTo(index) {
-            this.current = index;
-            this.resetAutoplay();
-        },
+    //     goTo(index) {
+    //         this.current = index;
+    //         this.resetAutoplay();
+    //     },
 
-        startAutoplay() {
-            this.timer = setInterval(() => this.next(), this.interval);
-        },
+    //     startAutoplay() {
+    //         this.timer = setInterval(() => this.next(), this.interval);
+    //     },
 
-        resetAutoplay() {
-            if (this.autoplay && this.timer) {
-                clearInterval(this.timer);
-                this.startAutoplay();
-            }
-        }
-    }));
+    //     resetAutoplay() {
+    //         if (this.autoplay && this.timer) {
+    //             clearInterval(this.timer);
+    //             this.startAutoplay();
+    //         }
+    //     }
+    // }));
+    Alpine.data('carousel', carousel);
 
     // Pill Tabs Component
     Alpine.data('pillTabs', (initialValue) => ({
